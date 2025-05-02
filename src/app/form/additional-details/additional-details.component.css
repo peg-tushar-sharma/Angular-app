@@ -1,0 +1,13 @@
+.question1-radio-group {
+  display: grid;
+  margin: 25px 0;
+}
+
+.question1-radio-group mat-label {
+  font-weight: bold;
+}
+
+mat-radio-group {
+  display: flex;
+  gap: 20px;
+}

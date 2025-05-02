@@ -1,0 +1,81 @@
+<form [formGroup]="productDetails">
+  <mat-form-field>
+    <mat-label>Product Name</mat-label>
+    <input formControlName="productName" matInput />
+    <mat-error *ngIf="formHelper.isRequiredError(productDetails, 'productName')"
+      >Input required</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Categories</mat-label>
+    <mat-select formControlName="category" multiple #selectCategory>
+      <mat-select-trigger>
+        <span *ngIf="(productDetails.get('category')?.value?.length || 0) >= 1">
+          {{ productDetails.get("category")?.value?.length || 0 }}
+          {{ productDetails.get("category")?.value?.length > 1 ? "items" : "item" }} selected
+        </span>
+      </mat-select-trigger>
+      <mat-checkbox
+        #allCategoriesSelected
+        (change)="toggleAllSelection(allCategoriesSelected, selectCategory)"
+        value="all"
+        ><span class="select-all-checkbox">Select all</span>
+      </mat-checkbox>
+      <mat-divider></mat-divider>
+      <mat-option
+        *ngFor="let category of categories; let i = index"
+        [value]="category"
+        (click)="optionClick(allCategoriesSelected)"
+        >{{ category }}</mat-option
+      >
+    </mat-select>
+    <mat-error *ngIf="formHelper.isRequiredError(productDetails, 'category')"
+      >Input required</mat-error
+    >
+  </mat-form-field>
+  <div class="input-fields-row">
+    <mat-form-field class="form-field-small">
+      <mat-label>Price</mat-label>
+      <input formControlName="price" matInput />
+      <mat-error *ngIf="formHelper.isRequiredError(productDetails, 'price')"
+        >Input required</mat-error
+      >
+      <mat-error *ngIf="formHelper.isPatternError(productDetails, 'price')"
+        >Only 2 digits after comma allowed</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="form-field-small">
+      <mat-label>Currency</mat-label>
+      <mat-select formControlName="currency">
+        <mat-option *ngFor="let currency of currencies; let i = index" [value]="currency">{{
+          currency
+        }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="formHelper.isRequiredError(productDetails, 'currency')"
+        >Input required</mat-error
+      >
+    </mat-form-field>
+  </div>
+  <div class="input-fields-row">
+    <mat-form-field class="form-field-small">
+      <mat-label>Quantity</mat-label>
+      <input formControlName="quantity" matInput />
+      <mat-error *ngIf="formHelper.isRequiredError(productDetails, 'quantity')"
+        >Input required</mat-error
+      >
+      <mat-error *ngIf="formHelper.isPatternError(productDetails, 'quantity')"
+        >Wrong format</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="form-field-small">
+      <mat-label>Year</mat-label>
+      <input formControlName="year" matInput />
+      <mat-error *ngIf="formHelper.isRequiredError(productDetails, 'year')"
+        >Input required</mat-error
+      >
+      <mat-error *ngIf="formHelper.isMaxValueExceeded(productDetails, 'year')"
+        >Max. allowed value is {{productDetails.get('year')?.errors?.['max'].max}}</mat-error
+      >
+    </mat-form-field>
+  </div>
+</form>

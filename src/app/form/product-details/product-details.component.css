@@ -1,0 +1,10 @@
+/* not working, using span and .select-all-checkbox */
+::ng-deep .mat-checkbox .mat-checkbox-label {
+  font-weight: bold !important;
+  font-size: medium !important;
+}
+
+.select-all-checkbox {
+  font-weight: bold;
+  font-size: medium;
+}

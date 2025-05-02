@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.form-field-small {
+  width: 185px;
+}
+
+.input-fields-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}

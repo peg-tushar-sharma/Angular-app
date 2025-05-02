@@ -1,0 +1,81 @@
+<div class="product-form-container">
+  <div class="product-form">
+    <h1>New Product</h1>
+    <form [formGroup]="productForm">
+      <mat-stepper #stepper>
+        <mat-step [stepControl]="productForm.get('productDetails')!">
+          <ng-template matStepLabel>Product Details</ng-template>
+          <app-product-details
+            formGroupName="productDetails"
+            [categories]="allCategories"
+            [currencies]="allCurrencies"></app-product-details>
+          <div class="stepper-buttons">
+            <button mat-button matStepperNext>
+              Next
+              <mat-icon aria-hidden="false" aria-label="Next step" iconPositionEnd
+                >arrow_forward</mat-icon
+              >
+            </button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="productForm.get('additionalDetails')!">
+          <ng-template matStepLabel>Additional Details</ng-template>
+          <app-additional-details formGroupName="additionalDetails"></app-additional-details>
+          <div class="stepper-buttons">
+            <button mat-button matStepperPrevious>
+              Back
+              <mat-icon aria-hidden="false" aria-label="Previous step">arrow_back</mat-icon>
+            </button>
+            <button mat-button matStepperNext>
+              Next
+              <mat-icon aria-hidden="false" aria-label="Next step" iconPositionEnd
+                >arrow_forward</mat-icon
+              >
+            </button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="productForm.get('productConfig')!">
+          <ng-template matStepLabel>Product Config</ng-template>
+          <app-product-config
+            formGroupName="productConfig"
+            [distributionChannels]="allDistributionChannels">
+          </app-product-config>
+          <div class="stepper-buttons">
+            <button mat-button matStepperPrevious>
+              <mat-icon aria-hidden="false" aria-label="Previous step">arrow_back</mat-icon>
+              Back
+            </button>
+            <button mat-button matStepperNext>
+              Next
+              <mat-icon aria-hidden="false" aria-label="Next step" iconPositionEnd
+                >arrow_forward</mat-icon
+              >
+            </button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="productForm.get('acknowledgements')!">
+          <ng-template matStepLabel>Acknowledgements</ng-template>
+          <app-acknowledgements
+            formGroupName="acknowledgements"
+            [dummyAcknowledgements]="allAcknowledgements"></app-acknowledgements>
+          <div class="stepper-buttons">
+            <button mat-button matStepperPrevious>
+              <mat-icon aria-hidden="false" aria-label="Previous step">arrow_back</mat-icon>
+              Back
+            </button>
+            <button
+              mat-flat-button
+              color="primary"
+              [disabled]="!productForm.valid"
+              (click)="submitForm()">
+              Submit
+            </button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </form>
+  </div>
+  <div style="margin: 25px 0">
+    {{ submitFormResult }}
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.product-form-container {
+  /* avoid page jumping when scroll bar appears */
+  margin-left: calc(100vw - 100%);
+  padding: 0 20%;
+}
+
+.product-form {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-expansion-panel-header {
+  background-color: #0070c040 !important;
+}
+
+:host ::ng-deep .mat-horizontal-content-container {
+  padding-top: 25px !important;
+}
+
+.stepper-buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 20px;
+}

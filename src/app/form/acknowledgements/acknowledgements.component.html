@@ -1,0 +1,7 @@
+<form [formGroup]="acknowledgements">
+  <section *ngFor="let ack of dummyAcknowledgements; let i = index">
+    <mat-checkbox [id]="ack.key" [value]="ack.value" (change)="onCheckChange($event)">{{
+      ack.value
+    }}</mat-checkbox>
+  </section>
+</form>

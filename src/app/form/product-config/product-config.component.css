@@ -1,0 +1,23 @@
+.dist-channel-select {
+  width: 350px;
+}
+
+mat-accordion {
+  width: 600px;
+  margin-top: 20px;
+}
+
+.duplicate-dist-channel-alert {
+  background-color: #f3f3f3;
+  color: red;
+  display: flex;
+  align-items: flex-end;
+  padding: 5px 10px;
+  gap: 5px;
+}
+
+.dist-channel-input-row {
+  display: flex;
+  gap: 25px;
+  align-items: baseline;
+}

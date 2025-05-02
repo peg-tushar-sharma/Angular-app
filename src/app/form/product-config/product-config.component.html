@@ -1,0 +1,54 @@
+<form [formGroup]="productConfig">
+  <div class="dist-channel-input-row">
+    <mat-form-field class="dist-channel-select">
+      <mat-label>Distribution Channel</mat-label>
+      <mat-select
+        formControlName="distributionChannel"
+        (selectionChange)="onDistributionChannelChange()">
+        <mat-option
+          *ngFor="let distributionChannel of distributionChannels; let i = index"
+          [value]="distributionChannel"
+          >{{ distributionChannel }}</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="formHelper.isRequiredError(productConfig, 'distributionChannel')"
+        >Input required</mat-error
+      >
+    </mat-form-field>
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="addDistributionChannel()"
+      [disabled]="isAddBtnDisabled">
+      Add
+    </button>
+  </div>
+  <div class="duplicate-dist-channel-alert" *ngIf="duplicateDistChannelAlert">
+    <mat-icon>info</mat-icon>Duplicate Distribution Channel
+  </div>
+
+  <ng-container formArrayName="distributionChannelFields">
+    <mat-accordion *ngFor="let dcf of distributionChannelFields.controls; let i = index" multi>
+      <mat-expansion-panel [formGroupName]="i" [expanded]="false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ dcf.get("distributionChannel")?.value }} </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="input-fields-row">
+          <mat-form-field class="form-field-small">
+            <mat-label>Input Field 1</mat-label>
+            <input formControlName="field1" matInput />
+          </mat-form-field>
+          <mat-form-field class="form-field-small">
+            <mat-label>Input Field 2</mat-label>
+            <input formControlName="field2" matInput />
+          </mat-form-field>
+          <mat-slide-toggle formControlName="isActive" color="accent"> Active </mat-slide-toggle>
+        </div>
+        <button mat-button (click)="deleteDistributionChannel(i)">
+          Delete
+          <mat-icon aria-hidden="false" aria-label="delete">delete_outline</mat-icon>
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+</form>

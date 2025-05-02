@@ -1,0 +1,30 @@
+<form [formGroup]="additionalDetails">
+  <mat-form-field>
+    <mat-label>Product description</mat-label>
+    <textarea formControlName="productDescription" matInput rows="5"></textarea>
+  </mat-form-field>
+  <div class="question1-radio-group">
+    <mat-label>Send notifications?</mat-label>
+    <mat-radio-group
+      formControlName="notificationsQuestion1"
+      (change)="toggleQuestion1($event)"
+      aria-label="notifications question 1">
+      <mat-radio-button [value]="true">Yes</mat-radio-button>
+      <mat-radio-button [value]="false">No</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input
+      formControlName="email"
+      type="email"
+      matInput
+      pattern="^[a-zA-Z0-9.\-_]{1,}@[a-zA-Z.\-]{2,}[.]{1}[a-zA-Z]{2,}$" />
+    <mat-error *ngIf="formHelper.isPatternError(additionalDetails, 'email')"
+      >Wrong format</mat-error
+    >
+    <mat-error *ngIf="formHelper.isRequiredError(additionalDetails, 'email')"
+      >Input required</mat-error
+    >
+  </mat-form-field>
+</form>
